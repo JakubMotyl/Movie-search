@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@layer components {
+  .li-content {
+    @apply text-[0.75rem] md:text-[0.9rem] cursor-pointer;
+  }
+  .li-text {
+    @apply relative duration-100 cursor-pointer;
+  }
+  .li-underline {
+    @apply absolute left-0 -bottom-1 w-full h-[2px] opacity-0 bg-white duration-100 group-hover:opacity-100;
+  }
+  .movie-details {
+    @apply text-white font-semibold md:text-[1.15rem] text-[1rem] mx-2;
+  }
+  .watch-now-btn {
+    @apply px-6 py-3 rounded-[0.3rem] font-semibold bg-white 
+    text-[0.75rem] md:text-[0.9rem] text-center hover:bg-white/70 duration-200;
+  }
+  .add-to-list-btn {
+    @apply bg-[#6d6d6e]/70 px-6 py-3 rounded-[0.3rem] 
+            flex items-center justify-center gap-2 text-[0.75rem] md:text-[0.9rem] 
+            font-semibold text-white hover:bg-[#6d6d6e]/40 duration-200;
+  }
+  .input-search {
+    @apply bg-transparent text-white md:w-1/2 w-full text-[1.25rem] 
+    p-3 font-extralight rounded-[0.5rem];
+    outline: none;
+    border: 2px solid white;
+    letter-spacing: 1px;
+  }
+  .input-search::placeholder {
+    font-weight: 200;
+    color: #d5d5d5;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+  .show-more-btn {
+    @apply bg-gray-800 w-12 h-12 text-white rounded-full 
+      cursor-pointer hover:bg-gray-700 
+      duration-300 text-3xl font-light;
+  }
+}
