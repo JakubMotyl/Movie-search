@@ -35,7 +35,7 @@ export default function Search({ setFavorites }) {
         }
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data.results)
+        // console.log(data.results)
         setMovies(data.results.slice(0, columns * 2));
         
       } catch (error) {
