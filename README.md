@@ -2,6 +2,8 @@
 
 Minimal React + Vite app to browse movies and save favorites.
 
+Website: [FilmZone](https://movie-search-lyart-five.vercel.app/)
+
 ## Features
 - Displays a featured movie on the home Hero component.
 - Browse categories, search, and add movies to a favorites list.
