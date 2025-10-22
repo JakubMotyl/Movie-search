@@ -5,6 +5,8 @@ export default function Search({ setFavorites }) {
   const [movies, setMovies] = useState([]);
   const [activeCategory, setActiveCategory] = useState('popular');
   const [query, setQuery] = useState('')
+  const [popupMessage, setPopupMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const moviesCategories = [
     {id: 'popular', name: 'Popular'},
@@ -63,7 +65,15 @@ export default function Search({ setFavorites }) {
       // console.log([...prev, movie])
       return [...prev, movie];
     })
-    alert(`${movie.title} has been added to your list :)`);
+    
+    // Popup message
+    setPopupMessage(`${movie.title}\nhas been added to your list.`);
+    setShowPopup(true);
+
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000);
+
   }
 
   return (
@@ -129,6 +139,15 @@ export default function Search({ setFavorites }) {
         <button className='show-more-btn'
         >+</button>
       </div>
+
+      {/* Popup Message */}
+      {
+        showPopup && (
+          <div className='fixed bottom-5 right-5 whitespace-pre-line text-white rounded-lg text-[0.85rem] font-light bg-green-600 px-4 py-2 opacity-0 animate-[fadeIn_0.3s_ease-out_forwards] popup-shadow'>
+            {popupMessage}
+          </div>
+        )
+      }
     </div>
   )
 }

@@ -1,6 +1,19 @@
+import { useState } from "react";
+
 export default function Hero({ favorites, setFavorites }) {
+  const [popupMessage, setPopupMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+
   const handleRemoveFavorites = (movie) => {
-    setFavorites(favorites.filter(item => item.id !== movie.id))
+    setFavorites(favorites.filter(item => item.id !== movie.id));
+
+    // Popup message
+    setPopupMessage(`${movie.title}\nhas been removed from your list.`);
+    setShowPopup(true);
+
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000);
   }
 
   return (
@@ -53,6 +66,16 @@ export default function Hero({ favorites, setFavorites }) {
           You don’t have any favorites yet. Start adding some! ⭐
         </div>
       )}
+
+      {/* Popup Message */}
+      {
+        showPopup && (
+          <div className='fixed bottom-5 right-5 whitespace-pre-line text-white rounded-lg text-[0.85rem] font-light bg-red-600 px-4 py-2 opacity-0 animate-[fadeIn_0.3s_ease-out_forwards] popup-shadow'>
+            {popupMessage}
+          </div>
+        )
+      }
     </div>
+    
   )
 }
