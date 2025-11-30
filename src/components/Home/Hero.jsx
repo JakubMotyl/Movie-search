@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getPopularMovie } from "../../scripts/api";
 import { API_KEY, BASE_URL } from "../../scripts/api";
+import Loader from "../Loader";
 
 const MovieRating = ({ vote_average }) => {
   return (
@@ -19,26 +20,39 @@ const MovieRating = ({ vote_average }) => {
 
 export default function Hero() {
   const [popularMovie, setPopularMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    let isMounted = true;
+    const delayed = setTimeout(async () => {
       try {
         const data = await getPopularMovie();
         const randomIndex = Math.floor(Math.random() * data.results.length);
         const movie = data.results[randomIndex];
-        // console.log(movie);
         const detailsRes = await fetch(
           `${BASE_URL}/movie/${movie.id}?api_key=${API_KEY}&language=en-US`
         );
         const details = await detailsRes.json();
-        // console.log(details);
-        setPopularMovie(details);
+        if (isMounted) {
+          setPopularMovie(details);
+        }
       } catch (error) {
         console.log("Error fetching movies", error);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
+    }, 500);
+    return () => {
+      clearTimeout(delayed);
+      isMounted = false;
     };
-    fetchData();
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   const handleChangeRuntime = (runtime) => {
     if (!runtime) return "N/A";
