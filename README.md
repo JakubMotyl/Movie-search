@@ -19,7 +19,7 @@ A movie discovery app allowing users to browse categories, search for titles, an
 1. **Clone the repository:**
    ```bash
       git clone https://github.com/JakubMotyl/Movie-search.git
-      cd QuizApp-Js
+      cd Movie-search
    ```
 2. **Install dependencies:**
    ```bash
